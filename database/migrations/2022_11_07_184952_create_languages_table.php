@@ -16,6 +16,11 @@ return new class extends Migration
         Schema::create('languages', function (Blueprint $table) {
             $table->string(column: 'name', length: 40)->primary();
         });
+
+        Schema::table('books', function (Blueprint $table) {
+            $table->foreign('category')->references('wording')->on('categories')->onUpdate('cascade');
+            $table->foreign('language')->references('name')->on('languages')->onUpdate('cascade');
+        });
     }
 
     /**
