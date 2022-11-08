@@ -9,9 +9,7 @@
     
     <body>
         @foreach ($books as $book)
-        <p>
-            {{ $book->title }}
-        </p>
+            <x-book.card :book="$book" />
         @endforeach    
     </body>
 </html>
