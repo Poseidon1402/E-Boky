@@ -28,7 +28,7 @@ class Category extends Model
      * 
      * @var bool
      */
-    protected $timestamps = false;
+    public $timestamps = false;
 
     /**
      * refers to all related books
