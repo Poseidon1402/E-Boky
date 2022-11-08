@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Book;
+use App\View\Components\Book\Card;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -18,9 +19,11 @@ class BookBasicTest extends TestCase
     {
         $book = new Book();
         $book->title = 'Cinquante Nuances de Grey';
+        $book->description = 'The best book ever';
         
-        $view = $this->view('pages.book.list', ['books' => [$book]]);
+        $view = $this->component(Card::class, compact('book'));
 
         $view->assertSee('Cinquante Nuances de Grey');
+        $view->assertSee('The best book ever');
     }
 }
