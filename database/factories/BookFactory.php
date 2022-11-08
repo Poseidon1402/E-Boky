@@ -17,7 +17,7 @@ class BookFactory extends Factory
     public function definition()
     {
         return [
-            'title' => fake('fr_FR')->unique()->word,
+            'title' => fake('fr_FR')->text(15),
             'description' => fake('fr_FR')->text(50),
             'price' => fake()->numberBetween(12, 3000),
             'pageNumber' => fake()->numberBetween(50, 125),

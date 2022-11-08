@@ -9,6 +9,7 @@ class Book extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
     /**
      * Refers to the related category
      * 

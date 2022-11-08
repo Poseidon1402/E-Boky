@@ -14,7 +14,7 @@ class Category extends Model
      * 
      * @var string
      */
-    protected $primaryKey = 'name';
+    protected $primaryKey = 'wording';
 
     /**
      * Indicates the type of the primary key
