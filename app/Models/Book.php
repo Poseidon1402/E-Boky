@@ -9,6 +9,8 @@ class Book extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['title', 'description', 'price', 'pageNumber', 'category', 'language'];
+
     public $timestamps = false;
     /**
      * Refers to the related category

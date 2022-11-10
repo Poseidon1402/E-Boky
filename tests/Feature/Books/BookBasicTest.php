@@ -10,6 +10,8 @@ use Tests\TestCase;
 
 class BookBasicTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * A test for checking if each book's title are displayed
      *
@@ -25,5 +27,25 @@ class BookBasicTest extends TestCase
 
         $view->assertSee('Cinquante Nuances de Grey');
         $view->assertSee('The best book ever');
+    }
+
+    /**
+     * A test for checking if all data are successfully sent to the target
+     * 
+     * @return void
+     */
+    public function test_insertion_inside_the_database()
+    {
+        $this->seed();
+
+        $this->post('/insert', [
+            'title' => 'Fifty Shades',
+            'description' => 'La meilleure livre du siècle.',
+            'price' => 200,
+            'page' => '500',
+            'category' => 'Dramatique',
+            'language' => 'Français'
+        ])->assertStatus(201);
+
     }
 }

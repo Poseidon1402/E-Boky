@@ -23,7 +23,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::controller(BookBasicController::class)->group(function() {
-    Route::get('/books', 'list');
+    Route::get('/books', 'list')->name('book_list');
+    Route::post('/insert', 'insert');
 });
 
 require __DIR__.'/auth.php';
