@@ -6,6 +6,7 @@ use App\Models\Book;
 use App\Models\Category;
 use App\Models\Language;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\File;
 
 class BookBasicController extends Controller
 {
@@ -36,6 +37,13 @@ class BookBasicController extends Controller
      */
     public function insert()
     {
+        request()->validate([
+            'title' => ['required', 'max:45', 'min:3'],
+            'description' => ['required', 'max:250'],
+            'price' => ['required', 'numeric'],
+            'book' => ['required', File::types(['pdf'])->max(1024*1000)]
+        ]);
+
         $file = request()->file('book');
 
         // Store the uploaded file inside the uploads/books folder
