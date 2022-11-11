@@ -45,7 +45,7 @@ class BookBasicTest extends TestCase
             'page' => '500',
             'category' => 'Dramatique',
             'language' => 'Français'
-        ])->assertStatus(201);
+        ])->assertStatus(302);
 
     }
 }

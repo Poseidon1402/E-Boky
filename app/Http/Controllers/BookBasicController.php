@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Category;
+use App\Models\Language;
 use Illuminate\Http\Request;
 
 class BookBasicController extends Controller
@@ -19,6 +21,14 @@ class BookBasicController extends Controller
         return view('pages.book.list', compact('books'));
     }
 
+    public function showBookRegistrationForm()
+    {
+        return view('pages.book.save', [
+            'languages' => Language::all(),
+            'categories' => Category::all()
+        ]);
+    }
+
     /**
      * Save the book inside the database
      * 
@@ -26,7 +36,7 @@ class BookBasicController extends Controller
      */
     public function insert()
     {
-        $books = Book::create([
+        Book::create([
             'title' => request('title'),
             'description' => request('description'),
             'price' => request('price'),
@@ -35,6 +45,6 @@ class BookBasicController extends Controller
             'language' => request('language')
         ]);
 
-        return redirect()->route(route: 'book_list', status: 201);
+        return redirect()->route(route: 'book_list');
     }
 }

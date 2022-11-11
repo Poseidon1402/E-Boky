@@ -24,7 +24,8 @@ Route::get('/dashboard', function () {
 
 Route::controller(BookBasicController::class)->group(function() {
     Route::get('/books', 'list')->name('book_list');
-    Route::post('/insert', 'insert');
+    Route::get('/book_registration', 'showBookRegistrationForm');
+    Route::post('/insert', 'insert')->name('book_save');
 });
 
 require __DIR__.'/auth.php';
