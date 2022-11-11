@@ -36,11 +36,18 @@ class BookBasicController extends Controller
      */
     public function insert()
     {
+        $file = request()->file('book');
+        $filename = $file->getClientOriginalName().'_'.time();
+
+        // Store the uploaded file inside the uploads/books folder
+        $file->storeAs('uploads/books', $filename);
+        
         Book::create([
             'title' => request('title'),
             'description' => request('description'),
             'price' => request('price'),
             'pageNumber' => request('page'),
+            'filePath' => $filename,
             'category' => request('category'),
             'language' => request('language')
         ]);

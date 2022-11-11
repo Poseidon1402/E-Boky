@@ -5,7 +5,9 @@ namespace Tests\Feature;
 use App\Models\Book;
 use App\View\Components\Book\Card;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Http\Testing\File;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class BookBasicTest extends TestCase
@@ -38,14 +40,18 @@ class BookBasicTest extends TestCase
     {
         $this->seed();
 
+        Storage::fake('public');
+        $file = UploadedFile::fake()->create('my_book.pdf');
+
         $this->post('/insert', [
             'title' => 'Fifty Shades',
             'description' => 'La meilleure livre du siècle.',
             'price' => 200,
             'page' => '500',
+            'book' => $file,
             'category' => 'Dramatique',
             'language' => 'Français'
-        ])->assertStatus(302);
-
+        ])
+        ->assertStatus(302);
     }
 }
