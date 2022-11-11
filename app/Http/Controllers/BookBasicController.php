@@ -17,7 +17,7 @@ class BookBasicController extends Controller
      */
     public function list()
     {
-        $books = Book::all();
+        $books = Book::paginate(10);
 
         return view('pages.book.list', compact('books'));
     }
