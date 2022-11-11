@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string(column: 'description', length: 255);
             $table->integer(column: 'price', unsigned: true)->nullable();
             $table->string(column: 'pageNumber', length: 7);
+            $table->string(column: 'file_path', length: 200);
             $table->string(column: 'category', length: 35)->nullable(false);
             $table->string(column: 'language', length: 40)->nullable(false);
             $table->timestamp('created_at')->default(now());
