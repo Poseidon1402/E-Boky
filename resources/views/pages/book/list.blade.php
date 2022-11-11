@@ -6,9 +6,13 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href={{ asset('css/card.css') }}>
         <title>All Books</title>
+        @notifyCss
     </head>
     
     <body>
+        <x:notify-messages />
+        @notifyJs
+        
         <div class="grid-container">
             @foreach ($books as $book)
                 <div>

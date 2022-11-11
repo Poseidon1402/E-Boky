@@ -59,6 +59,8 @@ class BookBasicController extends Controller
             'language' => request('language')
         ]);
 
-        return redirect()->route(route: 'book_list');
+        notify()->success('Your book was successfully registered', 'Book insertion');
+        
+        return redirect()->route('book_list', ['page' => 1]);
     }
 }

@@ -8,6 +8,7 @@
     @vite('resources/css/app.css')
 </head>
 <body>
+
     <div class="grid grid-rows-4 gap-4">
         <form action={{ route('book_save') }} method="post" enctype="multipart/form-data">
             @csrf
