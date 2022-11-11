@@ -5,7 +5,6 @@ namespace Tests\Feature;
 use App\Models\Book;
 use App\View\Components\Book\Card;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Http\Testing\File;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;

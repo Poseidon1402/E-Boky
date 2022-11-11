@@ -8,7 +8,7 @@
     @vite('ressources/css/app.css')
 </head>
 <body>
-    <form action={{ route('book_save') }} method="post">
+    <form action={{ route('book_save') }} method="post" enctype="multipart/form-data">
         @csrf
         <label for="title">Title</label>
         <input type="text" name="title" id="title">
@@ -21,6 +21,9 @@
 
         <label for="page">Page Number</label>
         <input type="text" name="page" id="page">
+
+        <label for="book">Upload your book</label>
+        <input type="file" name="book" id="book">
 
         <label for="category">Category</label>
         <select name="category" id="category">
