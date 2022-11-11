@@ -21,7 +21,7 @@ class BookFactory extends Factory
             'description' => fake('fr_FR')->text(50),
             'price' => fake()->numberBetween(12, 3000),
             'pageNumber' => fake()->numberBetween(50, 125),
-            'file_path' => 'uploads/test.pdf',
+            'filePath' => 'uploads/test.pdf',
             'category' => fake()->randomElement(['Romance', 'Dramatique', 'Action', 'Littérature']),
             'language' => fake()->randomElement(['Français', 'Malagasy', 'Anglais'])
         ];
