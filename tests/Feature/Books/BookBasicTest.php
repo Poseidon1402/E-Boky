@@ -4,6 +4,8 @@ namespace Tests\Feature;
 
 use App\Models\Book;
 use App\View\Components\Book\Card;
+use Database\Seeders\CategorySeeder;
+use Database\Seeders\LanguageSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -37,7 +39,10 @@ class BookBasicTest extends TestCase
      */
     public function test_insertion_inside_the_database()
     {
-        $this->seed();
+        $this->seed([
+            LanguageSeeder::class,
+            CategorySeeder::class
+        ]);
 
         Storage::fake('public');
         $file = UploadedFile::fake()->create('my_book.pdf');
@@ -51,6 +56,12 @@ class BookBasicTest extends TestCase
             'category' => 'Dramatique',
             'language' => 'Français'
         ])
-        ->assertStatus(302);
+        ->assertRedirect('/books?page=1');
+
+        $this->assertDatabaseHas('books', [
+            'title' => 'Fifty Shades',
+            'description' => 'La meilleure livre du siècle.',
+            'price' => 200
+        ]);
     }
 }
