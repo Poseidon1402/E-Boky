@@ -9,11 +9,46 @@
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
-            <!-- Name -->
+            <!-- First Name -->
             <div>
-                <x-input-label for="name" :value="__('Name')" />
+                <x-input-label for="firstName" :value="__('First Name')" />
 
-                <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                <x-text-input id="firstName" class="block mt-1 w-full" type="text" name="firstName" :value="old('firstName')" required autofocus />
+
+                <x-input-error :messages="$errors->get('firstName')" class="mt-2" />
+            </div>
+
+            <!-- Last Name -->
+            <div class="mt-4">
+                <x-input-label for="lastName" :value="__('Last Name')" />
+
+                <x-text-input id="lastName" class="block mt-1 w-full" type="text" name="lastName" :value="old('lastName')" required autofocus />
+
+                <x-input-error :messages="$errors->get('lastName')" class="mt-2" />
+            </div>
+
+            <!-- Birthday date -->
+            <div class="mt-4">
+                <x-input-label for="birthDate" :value="__('Birth Date')" />
+
+                <x-text-input id="birthDate" class="block mt-1 w-full" type="date" name="birthDate" :value="old('birthDate')" required autofocus />
+
+                <x-input-error :messages="$errors->get('birthDate')" class="mt-2" />
+            </div>
+            
+            <!-- Gender -->
+            <div class="mt-4 grid grid-cols-3">
+                <x-input-label for="gender" :value="__('Gender')" />
+
+                <div>
+                    <input type="radio" name="gender" id="male" value="M" class="mr-1">
+                    <label for="male">Male</label>
+                </div>
+
+                <div>
+                    <input type="radio" name="gender" id="female" value="F" class="mr-1">
+                    <label for="female">Female</label>
+                </div>
 
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
             </div>
