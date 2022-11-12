@@ -33,8 +33,8 @@
             
             <div class="grid grid-flow-col gap-3 w-2/4 mb-4">
                 <div class="grid grid-flow-row">
-                    <label for="page">Page Number</label>
-                    <input type="text" name="page" id="page">
+                    <label for="author">Author</label>
+                    <input type="text" name="author" id="author">
                 </div>
 
                 <div class="grid grid-flow-row">
