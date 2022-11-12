@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ProcessBook;
 use App\Models\Book;
 use App\Models\Category;
 use App\Models\Language;
-use App\Services\PdfService;
 use Illuminate\Validation\Rules\File;
 
 class BookBasicController extends Controller
@@ -40,7 +40,7 @@ class BookBasicController extends Controller
      * 
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function insert(PdfService $pdfService)
+    public function insert()
     {
         request()->validate([
             'title' => ['required', 'max:45', 'min:3'],
@@ -49,20 +49,14 @@ class BookBasicController extends Controller
             'book' => ['required', File::types(['pdf'])]
         ]);
 
+        // Get the pdf file and store it to the storage/app/public/uploads/books
         $file = request()->file('book');
-
-        // Store the uploaded file inside the uploads/books folder
         $path = $file->storeAs('public/uploads/books', time().'_'.$file->getClientOriginalName());
 
-        Book::create([
-            'title' => request('title'),
-            'description' => request('description'),
-            'price' => request('price'),
-            'pageNumber' => $pdfService->count_page_number($file),
-            'filePath' => str_replace('public', 'storage', $path),  // replace public with storage
-            'category' => request('category'),
-            'language' => request('language')
-        ]);
+        // Fetch all input data by typing the field explicitly
+        // After that, give it to the job for processing
+        $data = request()->all(['title', 'price', 'category', 'language', 'description']);
+        ProcessBook::dispatch($path, $data);
 
         notify()->success('Your book was successfully stored !', 'Book insertion');
         

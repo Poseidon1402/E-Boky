@@ -6,11 +6,16 @@ use Illuminate\Http\UploadedFile;
 
 class PdfService {
 
-    public function count_page_number(?UploadedFile $file) 
+    /**
+     * Count the number of pages inside a PDF file
+     * 
+     * @param string $fileContents The content of the pdf file after being read
+     * 
+     * @return int
+     */
+    public function count_page_number($fileContents) 
     {
-        $pdftext = file_get_contents($file);
-
-        $num = preg_match_all("/\/Page\W/", $pdftext, $dummy);
+        $num = preg_match_all("/\/Page\W/", $fileContents, $dummy);
 
         return $num;
     }
