@@ -50,7 +50,7 @@
                     <label for="female">Female</label>
                 </div>
 
-                <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                <x-input-error :messages="$errors->get('gender')" class="mt-2" />
             </div>
 
             <!-- Email Address -->
@@ -60,6 +60,18 @@
                 <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
 
                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            </div>
+
+            <!-- Role -->
+            <div class="mt-4">
+                <x-input-label for="role" :value="__('Who are you ?')" />
+
+                <select name="role" id="role" class="w-2/4">
+                    <option value="USER">USER</option>
+                    <option value="AUTHOR">AUTHOR</option>
+                </select>
+
+                <x-input-error :messages="$errors->get('role')" class="mt-2" />
             </div>
 
             <!-- Password -->

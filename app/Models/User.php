@@ -23,6 +23,7 @@ class User extends Authenticatable
         'pseudonyme',
         'birthDate',
         'email',
+        'role',
         'gender',
         'password',
     ];

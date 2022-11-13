@@ -25,6 +25,7 @@ class RegistrationTest extends TestCase
             'lastName' => 'Doe',
             'birthDate' => Date::create(2002, 2, 14),
             'email' => 'johndoe@example.com',
+            'role' => 'USER',
             'gender' => 'M',
             'password' => 'password',
             'password_confirmation' => 'password',
