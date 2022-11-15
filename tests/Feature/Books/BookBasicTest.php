@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Book;
+use App\Models\User;
 use App\View\Components\Book\Card;
 use Database\Seeders\CategorySeeder;
 use Database\Seeders\LanguageSeeder;
@@ -44,10 +45,15 @@ class BookBasicTest extends TestCase
             CategorySeeder::class
         ]);
 
+        $user = User::factory()->create([
+            'role' => 'AUTHOR',
+            'email_verified_at' => null,
+        ]);
+
         Storage::fake('public');
         $file = UploadedFile::fake()->create('my_book.pdf');
 
-        $this->post('/insert', [
+        $this->actingAs($user)->post('/insert', [
             'title' => 'Fifty Shades',
             'description' => 'La meilleure livre du siècle.',
             'price' => 200,
