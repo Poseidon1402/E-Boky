@@ -29,6 +29,8 @@ class BookBasicController extends Controller
      */
     public function showBookRegistrationForm()
     {
+        $this->authorize('create', Book::class);
+
         return view('pages.book.save', [
             'languages' => Language::all(),
             'categories' => Category::all()
@@ -42,6 +44,8 @@ class BookBasicController extends Controller
      */
     public function insert()
     {
+        $this->authorize('create', Book::class);
+        
         request()->validate([
             'title' => ['required', 'max:45', 'min:3'],
             'description' => ['required', 'max:250'],
